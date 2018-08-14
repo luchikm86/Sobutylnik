@@ -10,8 +10,23 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <org.springframework-version>5.0.8.RELEASE</org.springframework-version>
     </properties>
-    
+
+    <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -24,6 +39,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

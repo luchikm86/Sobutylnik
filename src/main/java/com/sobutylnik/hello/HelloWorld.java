@@ -1,4 +1,4 @@
-package com.sobytylnik.hello;
+package com.sobutylnik.hello;
 
 public class HelloWorld {
     public static void main(String[] args) {
