@@ -10,9 +10,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
     public class IndexController {
 
-        @RequestMapping(value="/controller", method=GET)
+        @RequestMapping(value="/index", method=GET)
         @ResponseBody
-        public String foo() {
+        public String textHello() {
             return "Hello, Sobutylnik!";
         }
 }
