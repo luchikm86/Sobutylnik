@@ -10,14 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-    @Controller
+
+@Controller
     public class IndexController {
 
-    @ResponseBody
-    public String HelloWorld() {
-        return "hello";
-    }
+        @RequestMapping(value="/controller", method=GET)
+        @ResponseBody
+        public String foo() {
+            return "Hello, Sobutylnik!";
+        }
 }
 
 //@Controller
