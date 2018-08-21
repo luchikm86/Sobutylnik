@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
         @ResponseBody
         public String textHello() {
-            return "Hello, Sobutylnik!";
+            return "Hello";
         }
 }
 
