@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
-    private static final String hello = "Hello";
+    private static final String HELLO = "Hello";
 
     @RequestMapping("/")
-//    @RequestMapping(value = "/index", produces = MediaType.APPLICATION_JSON_VALUE)
     public String index(){
-        return hello;
+        return HELLO;
     }
 }

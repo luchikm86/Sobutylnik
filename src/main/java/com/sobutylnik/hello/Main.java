@@ -4,12 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloWorld {
+public class Main {
     public static void main(String[] args) {
 
-//        Runnable helloPrinter = () -> System.out.println("Hello");
-//        helloPrinter.run();
-
-        SpringApplication.run(HelloWorld.class, args);
+        SpringApplication.run(Main.class, args);
     }
 }
