@@ -1,4 +1,4 @@
-package com.sobutylnik.hello;
+package com.sobytylnik.hello;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
