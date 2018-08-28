@@ -1,4 +1,4 @@
-package com.sobutylnik.hello;
+package com.sobytylnik.hello;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
