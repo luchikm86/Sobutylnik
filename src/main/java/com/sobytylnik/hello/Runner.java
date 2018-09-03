@@ -12,10 +12,13 @@ public class Runner {
         ConcurrentHashMap friendList = new ConcurrentHashMap();
         InMemoryProfileRepository test = new InMemoryProfileRepository(friendList);
         test.save(friend);
+        test.save(friend1);
+//        System.out.println(test);
+//        friend.changeSurName("Random");
+//        test.merge(friend);
+//        System.out.println(test);
+        System.out.println(test.findById(12L));
 
-        System.out.println(test);
-        friend.changeSurName("Random");
-        test.merge(friend);
-        System.out.println(test);
+
     }
 }
