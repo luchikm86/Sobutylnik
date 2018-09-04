@@ -1,15 +1,18 @@
 package com.sobytylnik.hello;
 
+import ch.qos.logback.classic.db.names.DBNameResolver;
+
 import java.util.Objects;
+import java.util.UUID;
 
 public class Profile {
-    private final Long id;
+    private final UUID id;
     private String name;
     private String surname;
     private int age;
 
-    public Profile(Long id, String name, String surname, int age) {
-        this.id = id;
+    public Profile(UUID id, String name, String surname, int age) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -27,20 +30,20 @@ public class Profile {
         return age;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void changeName(String newName) {
+    public void setName(String newName) {
         name = newName;
     }
 
-    public void changeSurName(String newSurName) {
+    public void setSurName(String newSurName) {
         surname = newSurName;
 
     }
 
-    public void changeAge(int newAge) {
+    public void setAge(int newAge) {
         age = newAge;
     }
 

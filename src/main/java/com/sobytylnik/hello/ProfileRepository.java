@@ -1,6 +1,7 @@
 package com.sobytylnik.hello;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface ProfileRepository {
 

@@ -2,55 +2,58 @@ package com.sobytylnik.hello;
 
 
 
+import com.sobytylnik.hello.ExceptionListPackage.EntityAlreadyExistsException;
+import com.sobytylnik.hello.ExceptionListPackage.EntityNotFoundException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyTest {
-    Profile friend = new Profile(12L, "Sergey", "Apalko", 29);
-    Profile friend1 = new Profile(13L, "Max", "Luchenko", 29);
-    Profile friend2 = new Profile(14L, "General", "Panama", 29);
-    Profile checkProfile = new Profile(14L,"Kolyamba","Kurenkov",27);
-    InMemoryProfileRepository testReposit = new InMemoryProfileRepository(new ConcurrentHashMap<>());
+    Profile friend = new Profile(UUID.randomUUID(), "Sergey", "Apalko", 29);
+    Profile friend1 = new Profile(UUID.randomUUID(), "Max", "Luchenko", 29);
+    Profile friend2 = new Profile(UUID.randomUUID(), "General", "Panama", 29);
+    Profile checkProfile = new Profile(UUID.randomUUID(),"Kolyamba","Kurenkov",27);
+    InMemoryProfileRepository friendList = new InMemoryProfileRepository();
 
-    
+
     @Test
     public void testFindById(){
-        testReposit.save(friend2);
+        friendList.save(friend2);
 
-        assertTrue(testReposit.findById(22L).equals(friend2));
+        assertTrue(friendList.findById(22L).equals(friend2));
     }
 
     @Test
     public void testSave(){
-        testReposit.save(friend);
-        testReposit.save(friend1);
-        assertEquals(testReposit.findById(13L), friend1);
+        friendList.save(friend);
+        friendList.save(friend1);
+        assertEquals(friendList.findById(13L), friend1);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = EntityAlreadyExistsException.class)
     public void testSave2(){
-        testReposit.save(friend1);
-        testReposit.save(friend1);
+        friendList.save(friend1);
+        friendList.save(friend1);
 
     }
 
     @Test
     public void testMerge(){
 
-        testReposit.save(friend2);
-        testReposit.merge(checkProfile);
+        friendList.save(friend2);
+        friendList.merge(checkProfile);
 
-        assertEquals(testReposit.findById(14L),Optional.of(checkProfile));
+        assertEquals(friendList.findById(14L),Optional.of(checkProfile));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void testMerge2(){
-        Profile checkProfile2 = new Profile(145L,"Kolyamba","Kurenkov",27);
-        testReposit.save(friend2);
-        testReposit.merge(checkProfile2);
+        Profile checkProfile2 = new Profile(UUID.randomUUID(),"Kolyamba","Kurenkov",27);
+        friendList.save(friend2);
+        friendList.merge(checkProfile2);
     }
 
 }
