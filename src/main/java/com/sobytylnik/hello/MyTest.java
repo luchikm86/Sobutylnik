@@ -8,14 +8,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyTest {
-    Profile friend = new Profile(UUID.randomUUID(), "Sergey", "Apalko", 29);
-    Profile friend1 = new Profile(UUID.randomUUID(), "Max", "Luchenko", 29);
-    Profile friend2 = new Profile(UUID.randomUUID(), "General", "Panama", 29);
-    Profile checkProfile = new Profile(UUID.randomUUID(),"Kolyamba","Kurenkov",27);
+    Profile friend = new Profile(new Random().nextLong(), "Sergey", "Apalko", 29);
+    Profile friend1 = new Profile(new Random().nextLong(), "Max", "Luchenko", 29);
+    Profile friend2 = new Profile(new Random().nextLong(), "General", "Panama", 29);
+    Profile checkProfile = new Profile(new Random().nextLong(),"Kolyamba","Kurenkov",27);
     InMemoryProfileRepository friendList = new InMemoryProfileRepository();
 
 
@@ -51,7 +52,7 @@ public class MyTest {
 
     @Test(expected = EntityNotFoundException.class)
     public void testMerge2(){
-        Profile checkProfile2 = new Profile(UUID.randomUUID(),"Kolyamba","Kurenkov",27);
+        Profile checkProfile2 = new Profile(new Random().nextLong(),"Kolyamba","Kurenkov",27);
         friendList.save(friend2);
         friendList.merge(checkProfile2);
     }

@@ -11,11 +11,11 @@ import com.sobytylnik.hello.ExceptionListPackage.EntityNotFoundException;
 public class InMemoryProfileRepository implements ProfileRepository {
 
 
-    ConcurrentHashMap<UUID, Profile> ProfileMap = new ConcurrentHashMap<>();
+    ConcurrentHashMap<Long, Profile> ProfileMap = new ConcurrentHashMap<>();
 
 
-
-    public Optional<Profile> findById(UUID id) {
+@Override
+    public Optional<Profile> findById(Long id) {
 
         if (ProfileMap.containsKey(id)) {
             Profile a = ProfileMap.get(id);
@@ -26,10 +26,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
         return Optional.empty();
     }
 
-    @Override
-    public Optional<Profile> findById(Long id) {
-        return Optional.empty();
-    }
+
 
     /**
      * @throws EntityAlreadyExistsException

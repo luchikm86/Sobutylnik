@@ -3,16 +3,17 @@ package com.sobytylnik.hello;
 import ch.qos.logback.classic.db.names.DBNameResolver;
 
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 public class Profile {
-    private final UUID id;
+    private final Long id;
     private String name;
     private String surname;
     private int age;
 
-    public Profile(UUID id, String name, String surname, int age) {
-        this.id = UUID.randomUUID();
+    public Profile(Long id, String name, String surname, int age) {
+        this.id = new Random().nextLong();;
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -30,7 +31,7 @@ public class Profile {
         return age;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
