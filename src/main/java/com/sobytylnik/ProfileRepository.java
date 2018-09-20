@@ -12,4 +12,6 @@ public interface ProfileRepository {
     Profile save(Profile profile);
 
     void merge(Profile profile);
+
+    void deleteById(long id);
 }

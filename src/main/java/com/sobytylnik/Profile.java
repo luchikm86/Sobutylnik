@@ -36,17 +36,17 @@ public class Profile {
         this.id = id;
     }
 
-    public void setName(String newName) {
-        name = newName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSurName(String newSurName) {
-        surname = newSurName;
+    public void setSurName(String surname) {
+        this.surname = surname;
 
     }
 
-    public void setAge(int newAge) {
-        age = newAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override

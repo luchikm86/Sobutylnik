@@ -49,6 +49,17 @@ public class InMemoryProfileRepository implements ProfileRepository {
         map.put(profile.getId(), profile);
     }
 
+    /**
+     * @throws EntityNotFoundException
+     */
+    @Override
+    public void deleteById(long id){
+        if (!map.containsKey(id)) {
+            throw new EntityNotFoundException("there is no such Profile in the base, it is already deleted, or never existed");
+        }
+        map.remove(id);
+    }
+
     @Override
     public String toString() {
         return "InMemoryProfileRepository{" +

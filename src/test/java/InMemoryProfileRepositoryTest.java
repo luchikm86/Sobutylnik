@@ -16,46 +16,46 @@ public class InMemoryProfileRepositoryTest {
     private Profile friend1 = new Profile("Max", "Luchenko", 29);
     private Profile friend2 = new Profile("General", "Panama", 29);
     private Profile checkProfile = new Profile("Kolyamba", "Kurenkov", 27);
-    InMemoryProfileRepository friendList = new InMemoryProfileRepository();
+    InMemoryProfileRepository profileRepository = new InMemoryProfileRepository();
 
 
     @Test
-    public void triesToFindProfileById_expectTrue() {
-        friendList.save(friend2);
+    public void triesToFindProfileById_expectSuccess() {
+        profileRepository.save(friend2);
 
-        assertTrue(friendList.findById(friend2.getId()).equals(Optional.of(friend2)));
+        assertTrue(profileRepository.findById(friend2.getId()).equals(Optional.of(friend2)));
     }
 
     @Test
-    public void tryToSaveProfileInRepository_expectTrue() {
-        friendList.save(friend);
-        friendList.save(friend1);
-        assertEquals(friendList.findById(friend.getId()), Optional.of(friend));
+    public void tryToSaveProfileInRepository_expectSuccess() {
+        profileRepository.save(friend);
+        profileRepository.save(friend1);
+        assertEquals(profileRepository.findById(friend.getId()), Optional.of(friend));
     }
 
     @Test(expected = EntityAlreadyExistsException.class)
-    public void tryToSaveProfileInRepository_expectException() {
-        friendList.save(friend1);
-        friendList.save(friend1);
+    public void tryToSaveAlreadyExestentProfile_ExpectException() {
+        profileRepository.save(friend1);
+        profileRepository.save(friend1);
 
     }
 
     @Test
-    public void tryToMergeProfile_ExpectTrue() {
+    public void tryToMergeProfile_expectSuccess() {
 
-        friendList.save(friend2);
+        profileRepository.save(friend2);
         checkProfile.setId(friend2.getId());
-        friendList.merge(checkProfile);
+        profileRepository.merge(checkProfile);
 
-        assertEquals(friendList.findById(friend2.getId()), Optional.of(checkProfile));
+        assertEquals(profileRepository.findById(friend2.getId()), Optional.of(checkProfile));
     }
 
     @Test(expected = EntityNotFoundException.class)
-    public void tryToMergeProfile_ExpectExeption() {
+    public void tryToMergeNonexistentProfile_ExpectException() {
         Profile checkProfile2 = new Profile("Kolyamba", "Kurenkov", 27);
         checkProfile2.setId(252L);
-        friendList.save(friend2);
-        friendList.merge(checkProfile2);
+        profileRepository.save(friend2);
+        profileRepository.merge(checkProfile2);
     }
 
 }
