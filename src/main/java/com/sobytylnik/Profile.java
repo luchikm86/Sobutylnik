@@ -40,7 +40,7 @@ public class Profile {
         this.name = name;
     }
 
-    public void setSurName(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
 
     }

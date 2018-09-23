@@ -60,6 +60,10 @@ public class InMemoryProfileRepository implements ProfileRepository {
         map.remove(id);
     }
 
+    public ConcurrentHashMap<Long, Profile> getMap() {
+        return map;
+    }
+
     @Override
     public String toString() {
         return "InMemoryProfileRepository{" +
