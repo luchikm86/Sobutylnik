@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
     public static void main(String[] args) {
 
-        //SpringApplication.run(Main.class, args);
+        SpringApplication.run(Main.class, args);
         InMemoryProfileRepository repository = new InMemoryProfileRepository();
         Profile kolya = new Profile("Kolya","Kurenkov",27);
         Profile artur = new Profile("Artur","Gamburf",33);
@@ -27,3 +27,6 @@ public class Main {
         controllerP.getAllProfiles();
     }
 }
+
+
+//http://localhost:8080

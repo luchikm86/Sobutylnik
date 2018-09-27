@@ -1,8 +1,12 @@
 package com.sobytylnik;
 
 import com.sobytylnik.exception.EntityNotFoundException;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
@@ -14,44 +18,32 @@ public class ProfileController {
         this.map = repository.getMap();
     }
 
-    public void getAllProfiles(){
+    @RequestMapping(value="/profiles", method = RequestMethod.GET)
+    public ArrayList<Profile> getAllProfiles(){
+        ArrayList list = new ArrayList<Profile>();
         for (ConcurrentHashMap.Entry<Long, Profile> entry : map.entrySet())
         {
-            System.out.println("{\n" +
-                    "       \"id\": " + entry.getValue().getId() + ",\n" +
-                    "       \"name\": " + entry.getValue().getName() + ",\n" +
-                    "       \"surname\": " + entry.getValue().getSurname() + ",\n" +
-                    "       \"age\": " + entry.getValue().getAge() + "\n" +
-                    "}");
+            list.add(entry);
         }
+        return list;
     }
 
-    public void getProfileByID(long id){
+    @RequestMapping(value="/profiles/{id}", method = RequestMethod.GET)
+    public Profile getProfileByID(@PathVariable("id") long id){
         if (!map.containsKey(id)){
             throw new EntityNotFoundException("404 - Profile is not found");
         }
-        System.out.println("{\n" +
-                "       \"id\": " + map.get(id).getId() + ",\n" +
-                "       \"name\": " + map.get(id).getName() + ",\n" +
-                "       \"surname\": " + map.get(id).getSurname() + ",\n" +
-                "       \"age\": " + map.get(id).getAge() + "\n" +
-                "}");
+        return map.get(id);
     }
 
-    public void updateProfile(long id, Profile newProfile) {
+    public Profile updateProfile(long id, Profile newProfile) {
         if (!map.containsKey(id)){
             throw new EntityNotFoundException("404 - Profile is not found");
         }
-        map.get(id).setAge(newProfile.getAge());
-        map.get(id).setName(newProfile.getName());
-        map.get(id).setSurname(newProfile.getSurname());
 
-        System.out.println("{\n" +
-                "       \"id\": " + map.get(id).getId() + ",\n" +
-                "       \"name\": " + map.get(id).getName() + ",\n" +
-                "       \"surname\": " + map.get(id).getSurname() + ",\n" +
-                "       \"age\": " + map.get(id).getAge() + "\n" +
-                "}");
+        map.put(id,newProfile);
+
+        return map.get(id);
     }
 
     public void deleteProfile(long id) {
