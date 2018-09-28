@@ -1,13 +1,18 @@
 package com.sobytylnik;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
+@Configuration
 public class InMemoryProfileRepository implements ProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();
@@ -58,6 +63,16 @@ public class InMemoryProfileRepository implements ProfileRepository {
             throw new EntityNotFoundException("there is no such Profile in the base, it is already deleted, or never existed");
         }
         map.remove(id);
+    }
+
+    @Override
+    public List<Profile> findAllProfiles() {
+        List<Profile> list = new ArrayList<>();
+        for (ConcurrentHashMap.Entry<Long, Profile> entry : map.entrySet())
+        {
+            list.add((Profile) entry);
+        }
+        return list;
     }
 
     @Override
