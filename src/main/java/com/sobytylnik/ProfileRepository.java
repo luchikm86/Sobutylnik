@@ -1,5 +1,6 @@
 package com.sobytylnik;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProfileRepository {
@@ -14,4 +15,6 @@ public interface ProfileRepository {
     void merge(Profile profile);
 
     void deleteById(long id);
+
+    List<Profile> findAllProfiles();
 }

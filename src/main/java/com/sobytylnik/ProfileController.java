@@ -1,56 +1,37 @@
 package com.sobytylnik;
 
-import com.sobytylnik.exception.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProfileController {
 
-    private ConcurrentHashMap<Long, Profile> map;
-
-    public ProfileController(InMemoryProfileRepository repository) {
-        this.map = repository.getMap();
-    }
+    @Autowired
+    private InMemoryProfileRepository repository;
 
     @RequestMapping(value="/profiles", method = RequestMethod.GET)
-    public ArrayList<Profile> getAllProfiles(){
-        ArrayList list = new ArrayList<Profile>();
-        for (ConcurrentHashMap.Entry<Long, Profile> entry : map.entrySet())
-        {
-            list.add(entry);
-        }
-        return list;
+    public List<Profile> getAllProfiles(){
+        return repository.findAllProfiles();
     }
 
     @RequestMapping(value="/profiles/{id}", method = RequestMethod.GET)
-    public Profile getProfileByID(@PathVariable("id") long id){
-        if (!map.containsKey(id)){
-            throw new EntityNotFoundException("404 - Profile is not found");
-        }
-        return map.get(id);
+    public Optional<Profile> getProfileByID(@PathVariable("id") long id){
+        return repository.findById(id);
     }
 
-    public Profile updateProfile(long id, Profile newProfile) {
-        if (!map.containsKey(id)){
-            throw new EntityNotFoundException("404 - Profile is not found");
-        }
-
-        map.put(id,newProfile);
-
-        return map.get(id);
+    public Optional<Profile> updateProfile(long id, Profile newProfile) {
+        repository.merge(newProfile);
+        return repository.findById(id);
     }
 
     public void deleteProfile(long id) {
-        if (!map.containsKey(id)){
-            throw new EntityNotFoundException("404 - Profile is not found");
-        }
-        map.remove(id);
+        repository.deleteById(id);
     }
 
 
