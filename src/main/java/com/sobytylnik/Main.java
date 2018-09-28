@@ -17,6 +17,7 @@ public class Main {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx){
         return args -> {
             InMemoryProfileRepository repository = new InMemoryProfileRepository();
+            ProfileController profileController = new ProfileController();
             Profile friend1 = new Profile("Sergey", "Apalko", 29);
             Profile friend2 = new Profile("Max", "Luchenko", 29);
             Profile friend3 = new Profile("General", "Panama", 29);
