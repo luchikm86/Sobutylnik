@@ -1,6 +1,8 @@
 package com.sobytylnik;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+@Configuration
 @RestController
+@ComponentScan(basePackageClasses = InMemoryProfileRepository.class)
 public class ProfileController {
 
     @Autowired
-    private InMemoryProfileRepository repository;
+    private ProfileRepository repository;
 
     @RequestMapping(value="/profiles", method = RequestMethod.GET)
     public List<Profile> getAllProfiles(){
