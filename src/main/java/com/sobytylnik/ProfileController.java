@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-@Configuration
+
 @RestController
-@ComponentScan(basePackageClasses = InMemoryProfileRepository.class)
+
 public class ProfileController {
 
     @Autowired

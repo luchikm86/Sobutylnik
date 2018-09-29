@@ -8,11 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Configuration
 public class InMemoryProfileRepository implements ProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();
