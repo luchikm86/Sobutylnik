@@ -1,8 +1,7 @@
 package com.sobytylnik;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,10 +12,10 @@ import java.util.Optional;
 
 
 @RestController
-
 public class ProfileController {
 
     @Autowired
+    @Qualifier(value = "inMemoryProfileRepository")
     private ProfileRepository repository;
 
     @RequestMapping(value="/profiles", method = RequestMethod.GET)
@@ -29,12 +28,12 @@ public class ProfileController {
         return repository.findById(id);
     }
 
-    public Optional<Profile> updateProfile(long id, Profile newProfile) {
+    public Optional<Profile> updateProfile(Long id, Profile newProfile) {
         repository.merge(newProfile);
         return repository.findById(id);
     }
 
-    public void deleteProfile(long id) {
+    public void deleteProfile(Long id) {
         repository.deleteById(id);
     }
 
