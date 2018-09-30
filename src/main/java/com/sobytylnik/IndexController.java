@@ -12,6 +12,3 @@ public class IndexController {
         return HELLO;
     }
 }
-
-
-//http://localhost:8080/

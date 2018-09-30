@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
-
 import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+@Component
 @Repository
 public class InMemoryProfileRepository implements ProfileRepository {
 
@@ -32,7 +33,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     @Override
     public Profile save(Profile profile) {
         if (profile.getId() != null && map.containsKey(profile.getId())) {
-            throw new EntityAlreadyExistsException("there is such Profile in the base");
+            throw new EntityAlreadyExistsException("There is such Profile in the base");
 
         }
         Long id = new Random().nextLong();
@@ -47,7 +48,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     @Override
     public void merge(Profile profile) {
         if (!map.containsKey(profile.getId())) {
-            throw new EntityNotFoundException("there is no such Profile in the base, try not merge but save option");
+            throw new EntityNotFoundException("There is no such Profile in the base, try not merge but save option");
         }
         map.put(profile.getId(), profile);
     }
@@ -58,7 +59,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     @Override
     public void deleteById(long id){
         if (!map.containsKey(id)) {
-            throw new EntityNotFoundException("there is no such Profile in the base, it is already deleted, or never existed");
+            throw new EntityNotFoundException("There is no such Profile in the base, it is already deleted, or never existed");
         }
         map.remove(id);
     }
@@ -66,9 +67,9 @@ public class InMemoryProfileRepository implements ProfileRepository {
     @Override
     public List<Profile> findAllProfiles() {
         List<Profile> list = new ArrayList<>();
-        for (ConcurrentHashMap.Entry<Long, Profile> entry : map.entrySet())
+        for (ConcurrentHashMap.Entry entry : map.entrySet())
         {
-            list.add((Profile) entry);
+            list.add((Profile) entry.getValue());
         }
         return list;
     }
