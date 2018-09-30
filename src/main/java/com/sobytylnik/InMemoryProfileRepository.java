@@ -66,12 +66,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
 
     @Override
     public List<Profile> findAllProfiles() {
-        List<Profile> list = new ArrayList<>();
-        for (ConcurrentHashMap.Entry entry : map.entrySet())
-        {
-            list.add((Profile) entry.getValue());
-        }
-        return list;
+        return new ArrayList<>(map.values());
     }
 
     @Override
