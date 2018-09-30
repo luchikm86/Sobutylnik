@@ -6,6 +6,10 @@ public class Profile {
     private String surname;
     private int age;
 
+    public Profile(){
+
+    }
+
     public Profile(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
