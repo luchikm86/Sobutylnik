@@ -7,7 +7,6 @@ public class Profile {
     private int age;
 
     public Profile(){
-
     }
 
     public Profile(String name, String surname, int age) {
