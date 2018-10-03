@@ -34,7 +34,6 @@ public class InMemoryProfileRepository implements ProfileRepository {
     public Profile save(Profile profile) {
         if (profile.getId() != null && map.containsKey(profile.getId())) {
             throw new EntityAlreadyExistsException("There is such Profile in the base");
-
         }
         Long id = new Random().nextLong();
         profile.setId(id);

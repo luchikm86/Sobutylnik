@@ -9,37 +9,36 @@ import java.util.Optional;
 
 
 @RestController
+@RequestMapping(value="/api/profiles")
 public class ProfileController {
 
     @Autowired
     private ProfileRepository repository;
 
-    @RequestMapping(value="/api/profiles", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Profile> getAllProfiles(){
         return repository.findAllProfiles();
     }
 
-    @RequestMapping(value="/api/profiles/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Optional<Profile> getProfileByID(@PathVariable("id") Long id){
         return repository.findById(id);
     }
 
-    @RequestMapping(value="/api/profiles", method = RequestMethod.POST)
-    public Optional<Profile> createProfile(@RequestBody Profile newProfile) {
-        repository.save(newProfile);
-        return repository.findById(newProfile.getId());
+    @RequestMapping(method = RequestMethod.POST)
+    public Profile createProfile(@RequestBody Profile newProfile) {
+        return repository.save(newProfile);
     }
 
-    @RequestMapping(value="/api/profiles/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/{id}", method = RequestMethod.PUT)
     public Optional<Profile> updateProfile(@PathVariable("id") Long id, @RequestBody Profile newProfile) {
         newProfile.setId(id);
         repository.merge(newProfile);
         return repository.findById(id);
     }
 
-    @RequestMapping(value="/api/profiles/{id}", method = RequestMethod.DELETE)
-    public Optional<Profile> deleteProfile(@PathVariable("id") Long id) {
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public void deleteProfile(@PathVariable("id") Long id) {
         repository.deleteById(id);
-        return repository.findById(id);
     }
 }
