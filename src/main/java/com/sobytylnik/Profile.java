@@ -1,16 +1,15 @@
 package com.sobytylnik;
 
-import java.util.Objects;
-import java.util.Random;
-
 public class Profile {
     private Long id;
     private String name;
     private String surname;
     private int age;
 
+    public Profile(){
+    }
+
     public Profile(String name, String surname, int age) {
-        this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -40,10 +39,7 @@ public class Profile {
         this.name = name;
     }
 
-    public void setSurName(String surname) {
-        this.surname = surname;
-
-    }
+    public void setSurname(String surname) { this.surname = surname; }
 
     public void setAge(int age) {
         this.age = age;
@@ -56,13 +52,6 @@ public class Profile {
         Profile profile = (Profile) o;
         return id == profile.id;
     }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id);
-    }
-
 
     @Override
     public String toString() {
