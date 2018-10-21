@@ -10,8 +10,8 @@ import com.sobytylnik.exception.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Component
-@Repository
+//@Component
+//@Repository
 public class InMemoryProfileRepository implements ProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();

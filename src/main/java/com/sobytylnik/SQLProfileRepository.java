@@ -1,11 +1,13 @@
 package com.sobytylnik;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -14,26 +16,26 @@ import java.util.Optional;
 @Transactional
 public class SQLProfileRepository implements ProfileRepository {
 
-    @Resource(name="sessionFactory")
-    private SessionFactory sessionFactory;
+    @PersistenceUnit
+    private EntityManagerFactory entityManager;
 
     @Override
     public Optional<Profile> findById(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         Profile profile = (Profile) session.get(Profile.class, id);
         return Optional.of(profile);
     }
 
     @Override
     public Profile save(Profile profile) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         session.save(profile);
         return profile;
     }
 
     @Override
     public void merge(Profile profile) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         Profile existingPerson = (Profile) session.get(Profile.class, profile.getId());
         existingPerson.setName(profile.getName());
         existingPerson.setSurname(profile.getSurname());
@@ -43,14 +45,14 @@ public class SQLProfileRepository implements ProfileRepository {
 
     @Override
     public void deleteById(long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         Profile profile = (Profile) session.get(Profile.class, id);
         session.delete(profile);
     }
 
     @Override
     public List<Profile> findAllProfiles() {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("FROM  Person");
         return  query.list();
     }

@@ -1,5 +1,7 @@
 package com.sobytylnik;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +24,7 @@ public class Main {
             repository.save(friend3);
         };
     }
+
 }
 
 //http://localhost:8080
