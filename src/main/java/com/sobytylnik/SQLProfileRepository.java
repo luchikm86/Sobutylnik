@@ -1,59 +1,51 @@
 package com.sobytylnik;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service("profileService")
+@Repository
 @Transactional
 public class SQLProfileRepository implements ProfileRepository {
 
-    @PersistenceUnit
-    private EntityManagerFactory entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Optional<Profile> findById(Long id) {
-        Session session = entityManager.unwrap(Session.class);
-        Profile profile = (Profile) session.get(Profile.class, id);
-        return Optional.of(profile);
+        return Optional.of(entityManager.find(Profile.class, id));
     }
 
     @Override
     public Profile save(Profile profile) {
-        Session session = entityManager.unwrap(Session.class);
-        session.save(profile);
+        entityManager.persist(profile);
         return profile;
     }
 
     @Override
     public void merge(Profile profile) {
-        Session session = entityManager.unwrap(Session.class);
-        Profile existingPerson = (Profile) session.get(Profile.class, profile.getId());
-        existingPerson.setName(profile.getName());
-        existingPerson.setSurname(profile.getSurname());
-        existingPerson.setAge(profile.getAge());
-        session.save(existingPerson);
+        findById(profile.getId())
+                .ifPresent(existingPerson -> {
+                    existingPerson.setName(profile.getName());
+                    existingPerson.setSurname(profile.getSurname());
+                    existingPerson.setAge(profile.getAge());
+                    save(existingPerson);
+                });
     }
 
     @Override
     public void deleteById(long id) {
-        Session session = entityManager.unwrap(Session.class);
-        Profile profile = (Profile) session.get(Profile.class, id);
-        session.delete(profile);
+        findById(id)
+                .ifPresent(profile -> entityManager.remove(profile));
     }
 
     @Override
     public List<Profile> findAllProfiles() {
-        Session session = entityManager.unwrap(Session.class);
-        Query query = session.createQuery("FROM  Person");
-        return  query.list();
+        return entityManager.createQuery("select p from Profile p", Profile.class)
+                .getResultList();
     }
 }
