@@ -7,11 +7,8 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-@Component
-@Repository
+//@Repository
 public class InMemoryProfileRepository implements ProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();

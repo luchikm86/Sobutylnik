@@ -1,18 +1,18 @@
 package com.sobytylnik;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping(value="/api/profiles")
 public class ProfileController {
 
     @Autowired
+    @Qualifier("SQLProfileRepository")
     private ProfileRepository repository;
 
     @RequestMapping(method = RequestMethod.GET)

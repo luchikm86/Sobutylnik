@@ -1,5 +1,5 @@
 CREATE TABLE `sobytylnik`.`profiles` (
-  `id` BIGINT(19) NOT NULL,
+  `id` BIGINT(19) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
   `age` INT(3) NOT NULL,
