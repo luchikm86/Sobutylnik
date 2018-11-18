@@ -24,17 +24,17 @@ public class ProfileControllerTest {
 
     @Test
     public void testWrongNameProfile() {
-        InMemoryProfileRepository repository = new InMemoryProfileRepository();
+
         Profile friendWrongName = new Profile("Sergey123", "Apalko", 29);
-        repository.save(friendWrongName);
+
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongName);
         assertFalse(violations.isEmpty());
     }
     @Test
     public void testWrongAgeProfile() {
-        InMemoryProfileRepository repository = new InMemoryProfileRepository();
+
         Profile friendWrongAge = new Profile("Max", "Luchenko", 129);
-        repository.save(friendWrongAge);
+
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongAge);
         assertFalse(violations.isEmpty());
     }
