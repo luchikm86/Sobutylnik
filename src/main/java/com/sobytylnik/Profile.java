@@ -1,6 +1,9 @@
 package com.sobytylnik;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "profiles")
@@ -10,10 +13,14 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
+    @Pattern(regexp="[^0-9]*")
     private String name;
     @Column(name = "surname")
+    @Pattern(regexp="[^0-9]*")
     private String surname;
     @Column(name = "age")
+    @Min(value = 1, message = "Age should not be less than 1")
+    @Max(value = 120, message = "Age should not be greater than 120")
     private int age;
 
     public Profile(){
