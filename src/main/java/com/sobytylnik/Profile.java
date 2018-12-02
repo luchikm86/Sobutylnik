@@ -13,10 +13,10 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
-    @Pattern(regexp="[^0-9]*")
+    @Pattern(regexp="^[a-zA-Z]+")
     private String name;
     @Column(name = "surname")
-    @Pattern(regexp="[^0-9]*")
+    @Pattern(regexp="^[a-zA-Z]+")
     private String surname;
     @Column(name = "age")
     @Min(value = 1, message = "Age should not be less than 1")
