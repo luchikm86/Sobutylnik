@@ -2,18 +2,21 @@ package com.sobytylnik.quiz;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Quiz {
+    private QuizType type;
     private int id;
     private String text;
     private String description;
-    private List<Question> listOfQuestions;
+    private List<Question> questions;
 
-    public Quiz(int id, String text, String description) {
+    public Quiz(QuizType type, int id, String text, String description) {
+        this.type = type;
         this.id = id;
         this.text = text;
         this.description = description;
-        this.listOfQuestions = new ArrayList<>();
+        this.questions = new ArrayList<>();
     }
 
     public int getId() {
@@ -40,28 +43,36 @@ public class Quiz {
         this.description = description;
     }
 
-    public List<Question> getListOfQuestions() {
-        return listOfQuestions;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
-    public void setListOfQuestions(List<Question> listOfQuestions) {
-        this.listOfQuestions = listOfQuestions;
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public QuizType getType() {
+        return type;
+    }
+
+    public void setType(QuizType type) {
+        this.type = type;
     }
 
     public void addQuestion(Question question){
-        listOfQuestions.add(question);
+        questions.add(question);
     }
 
-    public Question returnQuestionbyID(int id){
+    public Optional<Question> returnQuestionbyID(int id){
 
-        for (Question elem: listOfQuestions) {
+        for (Question elem: questions) {
 
             if (elem.getId() == id) {
-                return elem;
+                return Optional.of(elem);
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 
 }

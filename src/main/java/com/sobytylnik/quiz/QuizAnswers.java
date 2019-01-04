@@ -11,7 +11,7 @@ public class QuizAnswers {
     public QuizAnswers(Quiz quiz) {
         this.quiz = quiz;
         this.answers = new HashMap<>();
-        for (Question elem:quiz.getListOfQuestions()) {
+        for (Question elem:quiz.getQuestions()) {
             answers.put(elem.getId(),null);
         }
     }
@@ -39,9 +39,10 @@ public class QuizAnswers {
             for (int i = 1; i < answers.size(); i++) {
                 output = output + ", " + answers.get(questionID).get(i);
             }
+            return output;
+        } else {
+            return output;
         }
-
-        return output;
     }
 
     public String displayAnswer(int questionID){
