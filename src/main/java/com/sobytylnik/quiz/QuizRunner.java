@@ -2,32 +2,25 @@ package com.sobytylnik.quiz;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class QuizRunner {
     public static void main(String[] args) throws IOException {
-        Quiz iqQuiz = QuizFactory.createIqQuiz(1,"IQ test","This test will show your intelligence level");
-        Question question = new Question(1,1,"how much is 2+2 ?", false);
+        Quiz iqQuiz = QuizFactory.createIqQuiz();
 
         List<Option> answer = new ArrayList<>();
 
-        Option option1 = new Option(1,1,"1");
-        Option option2 = new Option(1,2,"4");
-        Option option3 = new Option(1,3,"8");
-        Option option4 = new Option(1,4,"0");
+        for (Option elem : iqQuiz.returnQuestionByID(1).map(Question::getOptions).get()) {
+            System.out.println(elem);
+        }
 
-        List<Option> options = Arrays.asList(option1, option2, option3, option4);
-
-        question.setOptions(options);
-        answer.add(option2);
-
-        iqQuiz.addQuestion(question);
-
-        QuizAnswers iqQuizAnswers = new QuizAnswers(iqQuiz);
-
-        iqQuizAnswers.addAnswer(1,answer);
-
-        System.out.println(iqQuizAnswers.displayAnswer(1));
+//        answer.add(iqQuiz.returnQuestionByID(1).map(Question::getOptions).get().get(1));
+//
+//        QuizAnswers iqQuizAnswers = new QuizAnswers(iqQuiz);
+//
+//        iqQuizAnswers.addAnswer(1,answer);
+//
+//        System.out.println(iqQuizAnswers.displayAnswer(1));
     }
 }

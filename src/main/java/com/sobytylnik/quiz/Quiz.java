@@ -63,7 +63,7 @@ public class Quiz {
         questions.add(question);
     }
 
-    public Optional<Question> returnQuestionbyID(int id){
+    public Optional<Question> returnQuestionByID(int id){
 
         for (Question elem: questions) {
 

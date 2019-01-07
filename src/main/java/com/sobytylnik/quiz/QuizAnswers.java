@@ -32,19 +32,6 @@ public class QuizAnswers {
         this.quiz = quiz;
     }
 
-    private String displayAnswers(int questionID){
-        String output = answers.get(questionID).get(questionID).getText();
-
-        if (answers.size() > 1) {
-            for (int i = 1; i < answers.size(); i++) {
-                output = output + ", " + answers.get(questionID).get(i);
-            }
-            return output;
-        } else {
-            return output;
-        }
-    }
-
     public String displayAnswer(int questionID){
         String answer ="Question id# " + questionID + ", answer: ";
         for (Option elem:answers.get(questionID)) {
