@@ -63,10 +63,9 @@ public class Quiz {
         questions.add(question);
     }
 
-    public Optional<Question> returnQuestionByID(int id){
+    public Optional<Question> getQuestionByID(int id){
 
         for (Question elem: questions) {
-
             if (elem.getId() == id) {
                 return Optional.of(elem);
             }

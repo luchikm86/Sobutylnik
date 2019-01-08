@@ -3,6 +3,7 @@ package com.sobytylnik.quiz;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class QuizAnswers {
     private Quiz quiz;
@@ -33,11 +34,10 @@ public class QuizAnswers {
     }
 
     public String displayAnswer(int questionID){
-        String answer ="Question id# " + questionID + ", answer: ";
-        for (Option elem:answers.get(questionID)) {
-            answer = answer + elem.getText() + ",";
+        StringJoiner questionAnswers = new StringJoiner(",");
+        for (Option option : answers.get(questionID)) {
+            questionAnswers.add(option.getText());
         }
-        answer = answer.substring(0, answer.length()-1);
-        return answer;
+        return "Question id# " + questionID + ", answer: " + questionAnswers.toString();
     }
 }

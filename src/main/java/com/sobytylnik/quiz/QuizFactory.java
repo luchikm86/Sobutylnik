@@ -30,6 +30,7 @@ public class QuizFactory {
         question1.addOption(new Option(2,2,"4"));
         question1.addOption(new Option(3,3,"2"));
         question1.addOption(new Option(4,4,"8"));
+        quiz.addQuestion(question1);
         return quiz;
     }
 
