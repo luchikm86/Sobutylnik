@@ -1,5 +1,6 @@
-package com.sobytylnik;
+package com.sobytylnik.OldRepositoryApproach;
 
+import com.sobytylnik.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public class SQLProfileRepository implements ProfileRepository {
+public class SQLProfileRepository implements ProfileRepository{
 
     @PersistenceContext
     private EntityManager entityManager;

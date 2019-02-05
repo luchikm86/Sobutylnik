@@ -1,4 +1,6 @@
-package com.sobytylnik;
+package com.sobytylnik.OldRepositoryApproach;
+
+import com.sobytylnik.Profile;
 
 import java.util.List;
 import java.util.Optional;

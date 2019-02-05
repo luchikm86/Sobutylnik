@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.sobytylnik.OldRepositoryApproach.ProfileRepository;
 import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
 

@@ -37,6 +37,7 @@
         <version>2.0.3.RELEASE</version>
     </parent>
 
+    <!--Spring-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,6 +64,8 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+
+        <!--MySQL-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -74,6 +77,7 @@
             <version>8.0.12</version>
         </dependency>
 
+        <!--Хрен знает что-->
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
@@ -86,6 +90,7 @@
             <version>2.2.6</version>
         </dependency>
 
+        <!--Swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -96,6 +101,21 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
+
+
+        <!--Spring-Data-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-data-jdbc</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.1.4.RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 </project>
