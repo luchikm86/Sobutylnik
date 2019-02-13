@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ProfileController {
 
     @Autowired
-    private SQLSpringProfileRepository repository;
+    private ProfileRepository repository;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Profile> getAllProfiles(){
@@ -24,31 +24,26 @@ public class ProfileController {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Optional<Profile> getProfileByID(@PathVariable("id") Long id){
-        if(repository.existsById(id)) {
-            return Optional.of(getAllProfiles().stream().filter(profile -> profile.getId().equals(id)).findFirst().get());
-        } else{
-            return Optional.empty();
-        }
+    public Optional<Profile> findProfileById(@PathVariable("id") Long id){
+        return repository.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Profile createProfile(@RequestBody Profile newProfile) {
+    public Optional<Profile> saveProfile(@RequestBody Profile newProfile) {
         repository.save(newProfile);
-        return newProfile;
+        return Optional.of(newProfile);
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
-    public Optional<Profile> updateProfile(@PathVariable("id") Long id, @RequestBody Profile newProfile) {
-        if(repository.existsById(id)){
-            repository.save(newProfile);
-            return Optional.of(newProfile);
-        }
-        return Optional.empty();
+    public Optional<Profile> mergeProfile(@PathVariable("id") Long id, @RequestBody Profile newProfile) {
+        Profile profile = newProfile;
+        profile.setId(id);
+        repository.save(profile);
+        return repository.findById(id);
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-    public void deleteProfile(@PathVariable("id") Long id) {
+    public void deleteProfileById(@PathVariable("id") Long id) {
         repository.deleteById(id);
     }
 }

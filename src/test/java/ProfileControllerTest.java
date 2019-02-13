@@ -1,4 +1,3 @@
-import com.sobytylnik.InMemoryProfileRepository;
 import com.sobytylnik.Profile;
 import org.junit.Before;
 import org.junit.Test;
