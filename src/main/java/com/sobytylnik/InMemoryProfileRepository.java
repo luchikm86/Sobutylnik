@@ -9,11 +9,11 @@ import com.sobytylnik.exception.EntityAlreadyExistsException;
 import com.sobytylnik.exception.EntityNotFoundException;
 
 //@Repository
-public class InMemoryProfileRepository implements ProfileRepository {
+public class InMemoryProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();
 
-    @Override
+
     public Optional<Profile> findById(Long id) {
 
         if (map.containsKey(id)) {
@@ -27,7 +27,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     /**
      * @throws EntityAlreadyExistsException
      */
-    @Override
+
     public Profile save(Profile profile) {
         if (profile.getId() != null && map.containsKey(profile.getId())) {
             throw new EntityAlreadyExistsException("There is such Profile in the base");
@@ -41,7 +41,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     /**
      * @throws EntityNotFoundException
      */
-    @Override
+
     public void merge(Profile profile) {
         if (!map.containsKey(profile.getId())) {
             throw new EntityNotFoundException("There is no such Profile in the base, try not merge but save option");
@@ -52,7 +52,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
     /**
      * @throws EntityNotFoundException
      */
-    @Override
+
     public void deleteById(long id){
         if (!map.containsKey(id)) {
             throw new EntityNotFoundException("There is no such Profile in the base, it is already deleted, or never existed");
@@ -60,7 +60,7 @@ public class InMemoryProfileRepository implements ProfileRepository {
         map.remove(id);
     }
 
-    @Override
+
     public List<Profile> findAllProfiles() {
         return new ArrayList<>(map.values());
     }

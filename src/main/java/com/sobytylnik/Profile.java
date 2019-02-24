@@ -3,7 +3,9 @@ package com.sobytylnik;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 @Entity
 @Table(name = "profiles")
@@ -23,6 +25,35 @@ public class Profile {
     @Max(value = 120, message = "Age should not be greater than 120")
     private int age;
 
+    @Column(name = "location")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String location;
+
+    @Column(name = "language")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String language;
+
+    @Column(name = "birthDate")
+    @Past
+    private Date birthDate;
+
+    @Column(name = "TwitterPage")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String TwitterPage;
+
+    @Column(name = "InstagramPage")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String InstagramPage;
+
+    @Column(name = "FacebookPage")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String FacebookPage;
+
+    @Column(name = "TelegramUserName")
+    @Pattern(regexp="^[a-zA-Z]+")
+    private String TelegramUserName;
+
+
     public Profile(){
     }
 
@@ -30,6 +61,21 @@ public class Profile {
         this.name = name;
         this.surname = surname;
         this.age = age;
+    }
+
+    public Profile(String name, String surname, String location,
+                  String language, String twitterPage, String instagramPage,
+                   String facebookPage, String telegramUserName) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.location = location;
+        this.language = language;
+        this.birthDate = birthDate;
+        TwitterPage = twitterPage;
+        InstagramPage = instagramPage;
+        FacebookPage = facebookPage;
+        TelegramUserName = telegramUserName;
     }
 
     public String getName() {
@@ -62,6 +108,62 @@ public class Profile {
         this.age = age;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getTwitterPage() {
+        return TwitterPage;
+    }
+
+    public void setTwitterPage(String twitterPage) {
+        TwitterPage = twitterPage;
+    }
+
+    public String getInstagramPage() {
+        return InstagramPage;
+    }
+
+    public void setInstagramPage(String instagramPage) {
+        InstagramPage = instagramPage;
+    }
+
+    public String getFacebookPage() {
+        return FacebookPage;
+    }
+
+    public void setFacebookPage(String facebookPage) {
+        FacebookPage = facebookPage;
+    }
+
+    public String getTelegramUserName() {
+        return TelegramUserName;
+    }
+
+    public void setTelegramUserName(String telegramUserName) {
+        TelegramUserName = telegramUserName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +179,13 @@ public class Profile {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
+                ", location='" + location + '\'' +
+                ", language='" + language + '\'' +
+                ", birthDate=" + birthDate +
+                ", TwitterPage='" + TwitterPage + '\'' +
+                ", InstagramPage='" + InstagramPage + '\'' +
+                ", FacebookPage='" + FacebookPage + '\'' +
+                ", TelegramUserName='" + TelegramUserName + '\'' +
                 '}';
     }
 }
