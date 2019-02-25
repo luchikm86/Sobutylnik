@@ -39,19 +39,19 @@ public class Profile {
 
     @Column(name = "TwitterPage")
     @Pattern(regexp="^[a-zA-Z]+")
-    private String TwitterPage;
+    private String twitterPage;
 
     @Column(name = "InstagramPage")
     @Pattern(regexp="^[a-zA-Z]+")
-    private String InstagramPage;
+    private String instagramPage;
 
     @Column(name = "FacebookPage")
     @Pattern(regexp="^[a-zA-Z]+")
-    private String FacebookPage;
+    private String facebookPage;
 
     @Column(name = "TelegramUserName")
     @Pattern(regexp="^[a-zA-Z]+")
-    private String TelegramUserName;
+    private String telegramUserName;
 
 
     public Profile(){
@@ -72,10 +72,10 @@ public class Profile {
         this.location = location;
         this.language = language;
         this.birthDate = birthDate;
-        TwitterPage = twitterPage;
-        InstagramPage = instagramPage;
-        FacebookPage = facebookPage;
-        TelegramUserName = telegramUserName;
+        this.twitterPage = twitterPage;
+        this.instagramPage = instagramPage;
+        this.facebookPage = facebookPage;
+        this.telegramUserName = telegramUserName;
     }
 
     public String getName() {
@@ -133,35 +133,35 @@ public class Profile {
     }
 
     public String getTwitterPage() {
-        return TwitterPage;
+        return twitterPage;
     }
 
     public void setTwitterPage(String twitterPage) {
-        TwitterPage = twitterPage;
+        twitterPage = twitterPage;
     }
 
     public String getInstagramPage() {
-        return InstagramPage;
+        return instagramPage;
     }
 
     public void setInstagramPage(String instagramPage) {
-        InstagramPage = instagramPage;
+        instagramPage = instagramPage;
     }
 
     public String getFacebookPage() {
-        return FacebookPage;
+        return facebookPage;
     }
 
     public void setFacebookPage(String facebookPage) {
-        FacebookPage = facebookPage;
+        facebookPage = facebookPage;
     }
 
     public String getTelegramUserName() {
-        return TelegramUserName;
+        return telegramUserName;
     }
 
     public void setTelegramUserName(String telegramUserName) {
-        TelegramUserName = telegramUserName;
+        telegramUserName = telegramUserName;
     }
 
     @Override
@@ -182,10 +182,10 @@ public class Profile {
                 ", location='" + location + '\'' +
                 ", language='" + language + '\'' +
                 ", birthDate=" + birthDate +
-                ", TwitterPage='" + TwitterPage + '\'' +
-                ", InstagramPage='" + InstagramPage + '\'' +
-                ", FacebookPage='" + FacebookPage + '\'' +
-                ", TelegramUserName='" + TelegramUserName + '\'' +
+                ", TwitterPage='" + twitterPage + '\'' +
+                ", InstagramPage='" + instagramPage + '\'' +
+                ", FacebookPage='" + facebookPage + '\'' +
+                ", TelegramUserName='" + telegramUserName + '\'' +
                 '}';
     }
 }
