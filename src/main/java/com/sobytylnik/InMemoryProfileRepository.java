@@ -13,6 +13,7 @@ public class InMemoryProfileRepository {
 
     private ConcurrentHashMap<Long, Profile> map = new ConcurrentHashMap<>();
 
+
     public Optional<Profile> findById(Long id) {
 
         if (map.containsKey(id)) {
@@ -26,6 +27,7 @@ public class InMemoryProfileRepository {
     /**
      * @throws EntityAlreadyExistsException
      */
+
     public Profile save(Profile profile) {
         if (profile.getId() != null && map.containsKey(profile.getId())) {
             throw new EntityAlreadyExistsException("There is such Profile in the base");
@@ -39,6 +41,7 @@ public class InMemoryProfileRepository {
     /**
      * @throws EntityNotFoundException
      */
+
     public void merge(Profile profile) {
         if (!map.containsKey(profile.getId())) {
             throw new EntityNotFoundException("There is no such Profile in the base, try not merge but save option");
@@ -49,12 +52,14 @@ public class InMemoryProfileRepository {
     /**
      * @throws EntityNotFoundException
      */
+
     public void deleteById(long id){
         if (!map.containsKey(id)) {
             throw new EntityNotFoundException("There is no such Profile in the base, it is already deleted, or never existed");
         }
         map.remove(id);
     }
+
 
     public List<Profile> findAllProfiles() {
         return new ArrayList<>(map.values());
