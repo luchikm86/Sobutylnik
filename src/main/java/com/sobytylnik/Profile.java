@@ -63,8 +63,8 @@ public class Profile {
         this.age = age;
     }
 
-    public Profile(String name, String surname, String location,
-                  String language, String twitterPage, String instagramPage,
+    public Profile(String name, String surname, int age, String location,
+                  String language, Date birthDate, String twitterPage, String instagramPage,
                    String facebookPage, String telegramUserName) {
         this.name = name;
         this.surname = surname;
