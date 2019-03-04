@@ -12,10 +12,14 @@ import static org.junit.Assert.*;
 import java.util.Optional;
 
 public class InMemoryProfileRepositoryTest {
-    private Profile friend = new Profile("Sergey", "Apalko", 29);
-    private Profile friend1 = new Profile("Max", "Luchenko", 29);
-    private Profile friend2 = new Profile("General", "Panama", 29);
-    private Profile checkProfile = new Profile("Kolyamba", "Kurenkov", 27);
+    private Profile friend = new Profile("Sergey", "Apalko", "Paris, France", "12.12.1990",
+            "Page", "Page", "Page", "Username");
+    private Profile friend1 = new Profile("Max", "Luchenko", "Kiev, Ukraine", "12.12.1987",
+            "Page", "Page", "Page", "Username");
+    private Profile friend2 = new Profile("General", "Panama", "Paris, France", "12.12.1991",
+            "Page", "Page", "Page", "Username");
+    private Profile checkProfile = new Profile("Kolyamba", "Kurenkov", "Paris, France", "12.12.1991",
+            "Page", "Page", "Page", "Username");
     InMemoryProfileRepository profileRepository = new InMemoryProfileRepository();
 
 
@@ -52,7 +56,8 @@ public class InMemoryProfileRepositoryTest {
 
     @Test(expected = EntityNotFoundException.class)
     public void tryToMergeNonexistentProfile_ExpectException() {
-        Profile checkProfile2 = new Profile("Kolyamba", "Kurenkov", 27);
+        Profile checkProfile2 = new Profile("Kolyamba", "Kurenkov", "Paris, France", "12.12.1991",
+                "Page", "Page", "Page", "Username");
         checkProfile2.setId(252L);
         profileRepository.save(friend2);
         profileRepository.merge(checkProfile2);

@@ -18,30 +18,32 @@ public class Profile {
     @Column(name = "surname")
     @Pattern(regexp="^[a-zA-Z]+")
     private String surname;
-    @Column(name = "age")
-    @Min(value = 1, message = "Age should not be less than 1")
-    @Max(value = 120, message = "Age should not be greater than 120")
-    private int age;
+    @Column(name = "location")
+    private String location;
+    @Column(name = "birthday")
+    private String birthday;
+    @Column(name = "twitter_page")
+    private String twitterPage;
+    @Column(name = "instagram_page")
+    private String instagramPage;
+    @Column(name = "facebook_page")
+    private String facebookPage;
+    @Column(name = "telegram_username")
+    private String telegramUsername;
 
     public Profile(){
     }
 
-    public Profile(String name, String surname, int age) {
+    public Profile(String name, String surname, String location, String birthday, String twitterPage,
+                   String instagramPage, String facebookPage, String telegramUsername) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getAge() {
-        return age;
+        this.location = location;
+        this.birthday = birthday;
+        this.twitterPage = twitterPage;
+        this.instagramPage = instagramPage;
+        this.facebookPage = facebookPage;
+        this.telegramUsername = telegramUsername;
     }
 
     public Long getId() {
@@ -52,14 +54,68 @@ public class Profile {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSurname(String surname) { this.surname = surname; }
+    public String getSurname() {
+        return surname;
+    }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getTwitterPage() {
+        return twitterPage;
+    }
+
+    public void setTwitterPage(String twitterPage) {
+        this.twitterPage = twitterPage;
+    }
+
+    public String getInstagramPage() {
+        return instagramPage;
+    }
+
+    public void setInstagramPage(String instagramPage) {
+        this.instagramPage = instagramPage;
+    }
+
+    public String getFacebookPage() {
+        return facebookPage;
+    }
+
+    public void setFacebookPage(String facebookPage) {
+        this.facebookPage = facebookPage;
+    }
+
+    public String getTelegramUsername() {
+        return telegramUsername;
+    }
+
+    public void setTelegramUsername(String telegramUsername) {
+        this.telegramUsername = telegramUsername;
     }
 
     @Override
@@ -76,7 +132,12 @@ public class Profile {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", age=" + age +
+                ", location='" + location + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", twitterPage='" + twitterPage + '\'' +
+                ", instagramPage='" + instagramPage + '\'' +
+                ", facebookPage='" + facebookPage + '\'' +
+                ", telegramUsername='" + telegramUsername + '\'' +
                 '}';
     }
 }

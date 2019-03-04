@@ -25,7 +25,8 @@ public class ProfileControllerTest {
     @Test
     public void testWrongNameProfileHasStringWithSpace() {
 
-        Profile friendWrongName = new Profile("Sergey A", "Apalko", 29);
+        Profile friendWrongName = new Profile("A", "Apalko", "Paris, France", "12.12.1991",
+                "Page", "Page", "Page", "Username");
 
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongName);
         assertFalse(violations.isEmpty());
@@ -34,35 +35,11 @@ public class ProfileControllerTest {
     @Test
     public void testWrongNameProfileIsEmptyString() {
 
-        Profile friendWrongName = new Profile(" ", "Apalko", 29);
+        Profile friendWrongName = new Profile(" ", "Apalko", "Paris, France", "12.12.1991",
+                "Page", "Page", "Page", "Username");
 
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongName);
         assertFalse(violations.isEmpty());
     }
-    @Test
-    public void testTooBigAgeProfile() {
 
-        Profile friendWrongAge = new Profile("Max", "Luchenko", 1000);
-
-        Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongAge);
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    public void testTooSmallAgeProfile() {
-
-        Profile friendWrongAge = new Profile("Max", "Luchenko", -1110);
-
-        Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongAge);
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    public void testCorrectAgeProfile() {
-
-        Profile friendCorrectAge = new Profile("Max", "Luchenko", 25);
-
-        Set<ConstraintViolation<Profile>> violations = validator.validate(friendCorrectAge);
-        assertTrue(violations.isEmpty());
-    }
 }
