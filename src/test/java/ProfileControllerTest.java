@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
@@ -25,7 +26,7 @@ public class ProfileControllerTest {
     @Test
     public void testWrongNameProfileHasStringWithSpace() {
 
-        Profile friendWrongName = new Profile("A", "Apalko", "Paris, France", "12.12.1991",
+        Profile friendWrongName = new Profile("A", "Apalko", "Paris, France", LocalDate.of(1991,12,12),
                 "Page", "Page", "Page", "Username");
 
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongName);
@@ -35,7 +36,7 @@ public class ProfileControllerTest {
     @Test
     public void testWrongNameProfileIsEmptyString() {
 
-        Profile friendWrongName = new Profile(" ", "Apalko", "Paris, France", "12.12.1991",
+        Profile friendWrongName = new Profile(" ", "Apalko", "Paris, France", LocalDate.of(1991,12,12),
                 "Page", "Page", "Page", "Username");
 
         Set<ConstraintViolation<Profile>> violations = validator.validate(friendWrongName);

@@ -1,6 +1,6 @@
 USE sobytylnik;
 INSERT INTO profiles (name, surname, location, birthday, twitter_page, instagram_page, facebook_page, telegram_username)
-VALUES('Nikolas', 'Baker', 'Kiev', '27.01.1991', 'https://twitter.com/denisborisovcom', 'https://www.instagram.com/loganpaul',
+VALUES('Nikolas', 'Baker', 'Kiev', DATE '1987-12-09', 'https://twitter.com/denisborisovcom', 'https://www.instagram.com/loganpaul',
        'https://www.facebook.com/zuck', '@bvanchuhov');
-INSERT INTO profiles (name, surname, location, birthday) VALUES('James', 'Bond', 'Kiev', '27.01.1921'),
-('Albert', 'Einstein', 'Mexico', '11.12.1897'),('Victor', 'Gugo', 'Kiev', '05.04.1990');
+INSERT INTO profiles (name, surname, location, birthday) VALUES('James', 'Bond', 'Kiev', DATE '2011-02-01'),
+('Albert', 'Einstein', 'Mexico', DATE '1987-12-12'),('Victor', 'Gugo', 'Kiev', DATE '1991-03-11');

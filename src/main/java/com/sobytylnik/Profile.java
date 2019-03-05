@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "profiles")
@@ -21,7 +22,7 @@ public class Profile {
     @Column(name = "location")
     private String location;
     @Column(name = "birthday")
-    private String birthday;
+    private LocalDate birthday;
     @Column(name = "twitter_page")
     private String twitterPage;
     @Column(name = "instagram_page")
@@ -34,7 +35,7 @@ public class Profile {
     public Profile(){
     }
 
-    public Profile(String name, String surname, String location, String birthday, String twitterPage,
+    public Profile(String name, String surname, String location, LocalDate birthday, String twitterPage,
                    String instagramPage, String facebookPage, String telegramUsername) {
         this.name = name;
         this.surname = surname;
@@ -78,11 +79,11 @@ public class Profile {
         this.location = location;
     }
 
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
